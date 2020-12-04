@@ -1,9 +1,6 @@
-#############################
-# maybe change these
-SFMLDIR := tmp/SFML
-
-#############################
-# don't change anything below
+CXX := x86_64-w64-mingw32-g++
+WINDRES := x86_64-w64-mingw32-windres
+SFMLDIR := /tmp/SFML
 SRCDIR := src
 OBJDIR := obj
 ICODIR := ico
@@ -27,7 +24,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CXX) -c -o $@ $^ $(DEFINES) $(INCFLAGS) $(LIBFLAGS) $(CXXFLAGS) $(LDFLAGS)
 
 $(ICODIR)/ico.res: $(ICODIR)/ico.rc
-	windres -O coff -o $@ $^
+	$(WINDRES) -O coff -o $@ $^
 
 create:
 	mkdir -p $(OBJDIR)

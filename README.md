@@ -18,9 +18,7 @@ Press Ctrl + R to reload configuration and images (will only reload configuratio
 
 Supported operating system:
 * Windows
-* Linux (tested with Arch Linux with WINE Staging 5). Note: You **must** use WINE Staging, because for whatever reason on stable WINE bongocat-osu doesn't register keyboard input from other windows.
-
-_Notice_: If you're using WINE on Linux, make sure that osu! and this application run in the same `WINEPREFIX`.
+* Linux (tested with Arch Linux)
 
 ## For developers
 This project uses [SFML](https://www.sfml-dev.org/index.php) and [JsonCpp](https://github.com/open-source-parsers/jsoncpp). JsonCpp libraries are directly included in the source using the provided `amalgamation.py` from the developers.
@@ -28,7 +26,14 @@ This project uses [SFML](https://www.sfml-dev.org/index.php) and [JsonCpp](https
 ### Libraries and dependency
 
 #### Windows and MinGW
-To build the source, download the SFML libraries [here](https://www.sfml-dev.org/index.php), copy `Makefile.windows` to `Makefile`, then replace *`<SFML-folder>`* in `Makefile` with the desired folder.
+To build the source, download the SFML libraries [here](https://www.sfml-dev.org/index.php), copy `Makefile.windows` to `Makefile`, then replace `tmp/SFML` in `Makefile` with the correct SFML folder.
+
+#### Linux to Windows cross-compile
+You need mingw with its binutils. You can check with your package manager for the exact name of these dependencies on your distro:
+- mingw-w64-gcc
+- mingw-w64-binutils
+
+You also need to download the SFML libraries [here](https://www.sfml-dev.org/index.php), copy `Makefile.linux-to-windows_cross_compile` to `Makefile`, then replace `/tmp/SFML` in `Makefile` with the correct SFML folder.
 
 #### Linux
 You need to have these dependencies installed. Check with your package manager for the exact name of these dependencies on your distro:
@@ -57,4 +62,3 @@ make test
 Alternatively, you can copy the newly-compiled `bin/bongo.exe` or `bin/bongo` into the base directory and execute it.
 
 If you have troubles compiling, it can be due to version mismatch between your compiler and SFML. See [#43](https://github.com/kuroni/bongocat-osu/issues/43) for more information.
-
